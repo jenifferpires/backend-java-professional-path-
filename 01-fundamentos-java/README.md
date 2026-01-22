@@ -1,43 +1,43 @@
-# ☕ 01 — Fundamentos de Java. 
+# ☕ 01 — Fundamentos de Java.  
 
-## 🎯 Objetivo do Módulo: 
+## 🎯 Objetivo do Módulo:  
 
-Este módulo tem como objetivo apresentar a **base da linguagem Java**, partindo do zero e construindo gradualmente a compreensão necessária para avançar em conceitos mais complexos.
+Este módulo tem como objetivo apresentar a **base sólida da linguagem Java**, de forma **didática, progressiva e reutilizável**, partindo do zero absoluto até fundamentos modernos utilizados no mercado.
 
-Ao final deste módulo, a pessoa estudante deverá:
+Ao final deste módulo, a pessoa estudante deverá ser capaz de:
 
-* Entender **o que é Java** e para que ele é utilizado
+* Entender **o que é Java** e onde ele é utilizado
 * Compreender **como o Java funciona internamente** (JVM, JRE e JDK)
-* Ler e escrever **programas simples em Java**
-* Reconhecer a **estrutura básica** de um código Java
-* Desenvolver segurança para seguir para Programação Orientada a Objetos
+* Ler, escrever e executar **programas simples em Java**
+* Reconhecer e organizar a **estrutura básica** de um projeto Java
+* Trabalhar com **tipos de dados, controle de fluxo, coleções e exceções**
+* Ter base suficiente para avançar com segurança para **Programação Orientada a Objetos**
 
-Este módulo prioriza **clareza e entendimento conceitual**, evitando abstrações excessivas no início.
+Este módulo prioriza **entendimento conceitual antes da complexidade técnica**, evitando atalhos que dificultem o aprendizado no médio e longo prazo.
 
 ---
 
 ## 🧠 O que é Java?
 
-Java é uma **linguagem de programação de propósito geral**, fortemente tipada e orientada a objetos, criada para ser:
+Java é uma **linguagem de programação de propósito geral**, fortemente tipada e orientada a objetos, criada com os seguintes princípios:
 
-* Portável ("escreva uma vez, execute em qualquer lugar")
-* Robusta
-* Segura
-* Amplamente utilizada em sistemas corporativos
+* Portabilidade ("write once, run anywhere")
+* Robustez e segurança
+* Alto uso em sistemas corporativos, financeiros e distribuídos
 
-Java não é apenas uma linguagem, mas parte de um **ecossistema** que inclui ferramentas, bibliotecas e uma máquina virtual responsável por executar o código.
+Java não é apenas uma linguagem, mas um **ecossistema completo**, composto por ferramentas, bibliotecas e uma máquina virtual responsável por executar o código.
 
 ---
 
-## ⚙️ Como o Java Funciona?  
+## ⚙️ Como o Java Funciona?
 
-Diferente de linguagens interpretadas diretamente pelo sistema operacional, o Java funciona em camadas:
+O Java funciona em camadas bem definidas:
 
-1. O código-fonte (`.java`) é escrito pelo desenvolvedor
-2. O compilador transforma esse código em **bytecode** (`.class`)
-3. A **JVM (Java Virtual Machine)** executa o bytecode
+1. O desenvolvedor escreve o código-fonte (`.java`).  
+2. O compilador transforma o código em **bytecode** (`.class`).  
+3. A **JVM (Java Virtual Machine)** executa o bytecode.  
 
-Esse modelo garante que o mesmo programa possa ser executado em diferentes sistemas operacionais.
+Esse modelo permite que o mesmo programa seja executado em diferentes sistemas operacionais sem alterações no código.
 
 ### 📌 JVM, JRE e JDK.  
 
@@ -45,70 +45,79 @@ Esse modelo garante que o mesmo programa possa ser executado em diferentes siste
   Responsável por executar o bytecode Java.
 
 * **JRE (Java Runtime Environment)**
-  Contém a JVM e bibliotecas necessárias para rodar aplicações Java.
+  Contém a JVM e as bibliotecas necessárias para rodar aplicações Java.
 
 * **JDK (Java Development Kit)**
-  Inclui a JRE + ferramentas para desenvolvimento (compilador, depurador, etc.).
+  Inclui a JRE + ferramentas de desenvolvimento (compilador, depurador, etc.).
 
-Para desenvolver em Java, é necessário ter o **JDK** instalado.
-
----
-
-## 🧱 Estrutura Básica de um Programa Java.  
-
-Todo programa Java segue uma estrutura mínima:
-
-* Uma **classe**
-* Um método principal chamado `main`
-
-Exemplo simples:
-
-```java
-public class HelloWorld {
-    public static void main(String[] args) {
-        System.out.println("Olá, mundo!");
-    }
-}
-```
-
-Neste momento, não é necessário entender todos os detalhes. O foco é reconhecer a **forma** do código.
+Para desenvolver em Java, é obrigatório ter o **JDK** instalado.
 
 ---
 
-## 📂 Organização do Módulo:  
+## 📂 Organização do Módulo: 
 
-Este módulo está organizado da seguinte forma:
+A estrutura do módulo foi pensada para **facilitar o aprendizado progressivo**, separando claramente conceitos, exemplos práticos e exercícios.
 
 ```text
 01-fundamentos-java/
 │
 ├── README.md
-├── conceitos/
-│   ├── o-que-e-java.md
-│   ├── jvm-jre-jdk.md
-│   └── estrutura-basica.md
 │
-├── exemplos/
-│   ├── HelloWorld.java
+├── 01-introducao/
+│   ├── README.md
+│   └── HelloWorld.java
+│
+├── 02-tipos-primitivos/
+│   ├── README.md
 │   └── TiposPrimitivos.java
 │
-└── exercicios/
-    ├── exercicios-propostos.md
-    └── resolucoes/
+├── 03-estruturas-controle/
+│   ├── README.md
+│   ├── EstruturasCondicionais.java
+│   └── EstruturasRepeticao.java
+│
+├── 04-colecoes/
+│   ├── README.md
+│   ├── Listas.java
+│   ├── Sets.java
+│   └── Maps.java
+│
+├── 05-programacao-funcional/
+│   ├── README.md
+│   ├── Lambdas.java
+│   └── StreamAPI.md
+│
+├── 06-tratamento-erros/
+│   ├── README.md
+│   └── Excecoes.java
+│
+├── conceitos/
+│   └── arquivos conceituais de apoio
+│
+├── exemplos/
+│   └── exemplos isolados por tema
+│
+└── exercicios/ 
+    └── resolucoes/  
 ```
 
-*Cada pasta tem um propósito claro e evolui gradualmente.*
+Cada pasta possui um papel claro:
+
+* **README.md** → explica o objetivo e os conceitos do tópico.  
+* **Arquivos `.java`** → exemplos práticos e executáveis.  
+* **conceitos/** → explicações teóricas reutilizáveis.  
+* **exemplos/** → código focado em um único conceito.  
+* **exercicios/** → prática guiada e consolidação.  
 
 ---
 
 ## 📌 Observações Importantes:  
 
-* Java exige **atenção à sintaxe** desde o início
-* Erros fazem parte do processo de aprendizado
-* Compreender os conceitos é mais importante do que memorizar comandos
-
-Este módulo serve como **fundação** para todo o restante do repositório.
+* Java exige atenção à sintaxe desde o início.  
+* Errar faz parte do processo de aprendizado.  
+* Compreender os conceitos é mais importante do que memorizar comandos.  
+* Uma base bem construída reduz drasticamente a dificuldade nos módulos seguintes.  
 
 ---
 
-> Uma base bem construída em Java reduz drasticamente a complexidade dos próximos passos.
+> Uma fundação sólida em Java transforma aprendizado avançado em consequência, não em sofrimento.
