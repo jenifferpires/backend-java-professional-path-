@@ -9,106 +9,85 @@ public class StreamAPIPratica {
 
     public static void main(String[] args) {
 
-        // =========================
-        // Exemplo 1 — Filter + forEach
-        // =========================
-        List<String> nomes = Arrays.asList(
-                "Ana", "Bruno", "Amanda", "Carlos", "Alice"
+        List<Funcionario> funcionarios = Arrays.asList(
+                new Funcionario("Ana", "TI", 4500),
+                new Funcionario("Bruno", "RH", 3200),
+                new Funcionario("Carla", "TI", 5200),
+                new Funcionario("Daniel", "Financeiro", 6000),
+                new Funcionario("Eva", "RH", 3900)
         );
 
-        System.out.println("Nomes que começam com A:");
-        nomes.stream()
-                .filter(nome -> nome.startsWith("A"))
-                .forEach(System.out::println);
+        // 1️⃣ Filtrar funcionários do setor de TI
+        List<Funcionario> funcionariosTI = funcionarios.stream()
+                .filter(f -> f.getDepartamento().equalsIgnoreCase("TI"))
+                .toList();
 
+        System.out.println("Funcionários de TI:");
+        funcionariosTI.forEach(System.out::println);
 
-        // =========================
-        // Exemplo 2 — Map + Collect
-        // =========================
-        List<Integer> numeros = Arrays.asList(2, 4, 6, 8, 10);
+        // 2️⃣ Extrair nomes dos funcionários com salário acima de 4000
+        List<String> nomesSalarioAlto = funcionarios.stream()
+                .filter(f -> f.getSalario() > 4000)
+                .map(Funcionario::getNome)
+                .toList();
 
-        List<Integer> numerosAoQuadrado = numeros.stream()
-                .map(n -> n * n)
-                .collect(Collectors.toList());
+        System.out.println("\nFuncionários com salário acima de 4000:");
+        nomesSalarioAlto.forEach(System.out::println);
 
-        System.out.println("\nNúmeros ao quadrado:");
-        System.out.println(numerosAoQuadrado);
+        // 3️⃣ Agrupar funcionários por departamento
+        Map<String, List<Funcionario>> funcionariosPorDepartamento =
+                funcionarios.stream()
+                        .collect(Collectors.groupingBy(Funcionario::getDepartamento));
 
+        System.out.println("\nFuncionários agrupados por departamento:");
+        funcionariosPorDepartamento.forEach((dep, lista) -> {
+            System.out.println(dep + ": " + lista);
+        });
 
-        // =========================
-        // Exemplo 3 — Filter + Map + Sorted
-        // =========================
-        List<String> palavras = Arrays.asList(
-                "java", "stream", "lambda", "api", "backend"
+        // 4️⃣ Contar funcionários por departamento
+        Map<String, Long> quantidadePorDepartamento =
+                funcionarios.stream()
+                        .collect(Collectors.groupingBy(
+                                Funcionario::getDepartamento,
+                                Collectors.counting()
+                        ));
+
+        System.out.println("\nQuantidade de funcionários por departamento:");
+        quantidadePorDepartamento.forEach((dep, qtd) ->
+                System.out.println(dep + ": " + qtd)
         );
-
-        List<String> resultado = palavras.stream()
-                .filter(p -> p.length() > 4)
-                .map(String::toUpperCase)
-                .sorted()
-                .collect(Collectors.toList());
-
-        System.out.println("\nPalavras filtradas, transformadas e ordenadas:");
-        System.out.println(resultado);
-
-
-        // =========================
-        // Exemplo 4 — Stream com objetos (Map)
-        // =========================
-        List<Pessoa> pessoas = Arrays.asList(
-                new Pessoa("Ana", 22),
-                new Pessoa("Bruno", 30),
-                new Pessoa("Carla", 25),
-                new Pessoa("Daniel", 30)
-        );
-
-        Map<Integer, List<Pessoa>> pessoasPorIdade = pessoas.stream()
-                .collect(Collectors.groupingBy(Pessoa::getIdade));
-
-        System.out.println("\nPessoas agrupadas por idade:");
-        pessoasPorIdade.forEach((idade, lista) ->
-                System.out.println(idade + " -> " + lista)
-        );
-
-
-        // =========================
-        // Exemplo 5 — Count + AnyMatch
-        // =========================
-        long maioresDe25 = pessoas.stream()
-                .filter(p -> p.getIdade() > 25)
-                .count();
-
-        boolean existeMenorDe18 = pessoas.stream()
-                .anyMatch(p -> p.getIdade() < 18);
-
-        System.out.println("\nQuantidade de pessoas com mais de 25 anos: " + maioresDe25);
-        System.out.println("Existe alguém menor de 18? " + existeMenorDe18);
     }
 }
 
 /**
- * Classe simples de apoio para exemplos com objetos
+ * Classe de domínio utilizada para exemplos práticos.
  */
-class Pessoa {
+class Funcionario {
 
     private String nome;
-    private int idade;
+    private String departamento;
+    private double salario;
 
-    public Pessoa(String nome, int idade) {
+    public Funcionario(String nome, String departamento, double salario) {
         this.nome = nome;
-        this.idade = idade;
+        this.departamento = departamento;
+        this.salario = salario;
     }
 
     public String getNome() {
         return nome;
     }
 
-    public int getIdade() {
-        return idade;
+    public String getDepartamento() {
+        return departamento;
+    }
+
+    public double getSalario() {
+        return salario;
     }
 
     @Override
     public String toString() {
-        return nome + " (" + idade + ")";
+        return nome + " - " + departamento + " - R$ " + salario;
     }
 }
