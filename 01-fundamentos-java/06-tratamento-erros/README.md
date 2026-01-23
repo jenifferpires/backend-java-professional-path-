@@ -77,7 +77,16 @@ Cada pasta tem um papel claro:
 
 * **conceitos/** → entendimento teórico
 * **exemplos/** → funcionamento do Java
-* **praticas/** → aplicação em cenários reais
+* **praticas/** → aplicação em cenários reais.
+
+## 📚 Conteúdos do módulo:  
+
+1. [O que são exceções](./o-que-sao-excecoes.md). 
+2. Hierarquia de exceções. 
+3. Try, catch e finally. 
+4. Checked vs Unchecked Exceptions. 
+5. Criando exceções customizadas. 
+6. Boas práticas no tratamento de erros. 
 
 ---
 

@@ -1,98 +1,166 @@
-# ❓ O que são Exceções em Java. 
+# O que são Exceções em Java. 
 
-## 🎯 Objetivo deste Conceito:  
+## 🎯 Objetivo do conteúdo:  
 
-Este material tem como objetivo explicar **o que são exceções**, por que elas existem e qual o papel delas no fluxo de execução de um programa Java.
+Este material tem como objetivo explicar **o conceito de exceções em Java**, deixando claro:
 
-Aqui o foco não é código avançado, mas **modelo mental**.
+* O que são exceções
+* Por que elas existem
+* Como afetam o fluxo de execução do programa
 
----
-
-## 🧠 O que é uma Exceção?
-
-Uma exceção é um **evento inesperado ou anormal** que ocorre durante a execução de um programa e **interrompe o fluxo normal** das instruções.
-
-Em termos simples:
-
-> Uma exceção indica que algo deu errado e precisa de atenção.
-
-Ela pode ser causada por:
-
-* Dados inválidos.  
-* Falta de recursos.  
-* Erros de lógica.  
-* Falhas externas (arquivo, rede, banco de dados).  
+Aqui **não entramos ainda em detalhes de código avançado**. O foco é construir uma base conceitual sólida, essencial para compreender `try/catch`, hierarquia de exceções e boas práticas nos próximos arquivos do módulo.
 
 ---
 
-## 🔁 Fluxo Normal vs Fluxo com Exceção. 
+## 🧠 O que é uma exceção?
 
-### Fluxo normal: 
+Em Java, uma **exceção** é um evento que ocorre **durante a execução do programa** e que **interrompe o fluxo normal** das instruções.
 
-O programa executa instrução por instrução, de cima para baixo.
+Ela indica que algo inesperado ou inválido aconteceu, como:
 
-### Fluxo com exceção:  
+* Divisão por zero.  
+* Acesso a uma posição inexistente de um array.  
+* Tentativa de usar um objeto `null`.  
+* Falha ao acessar arquivos, banco de dados ou APIs.  
 
-Quando uma exceção ocorre:
+📌 Importante:
 
-1. A execução normal é interrompida.  
-2. O Java cria um **objeto de exceção**.  
-3. O sistema procura um local que saiba lidar com aquele erro.  
-4. Se não encontrar, o programa é encerrado.  
-
-Esse mecanismo evita que o sistema continue executando em um estado inconsistente.
-
----
-
-## ⚙️ Exceções são Objetos:  
-
-Em Java, exceções **são classes** e fazem parte da hierarquia da linguagem.
-
-Isso significa que:
-
-* Podem ser instanciadas.  
-* Possuem atributos e métodos.  
-* Podem ser estendidas (exceções customizadas).  
-
-Essa abordagem torna o tratamento de erros **estruturado e previsível**.
+> Exceções **não são erros de sintaxe**.
+> O código compila normalmente, mas falha **em tempo de execução**.
 
 ---
 
-## 🚫 Exceções não são Erros de Programação Simples
+## 🔁 Fluxo de execução: normal vs exceção:  
 
-Nem todo erro deve ser tratado com exceção.
+Antes de aprender a tratar exceções, é fundamental entender **como o Java executa o código**.
 
-Exceções **não substituem**:
+### 🟢 Fluxo normal
 
-* Validações simples.  
-* Uso correto de estruturas condicionais.  
-* Testes.  
+```text
+Início
+  ↓
+Instrução 1
+  ↓
+Instrução 2
+  ↓
+Instrução 3
+  ↓
+Fim
+```
 
-Elas existem para representar **situações fora do fluxo esperado**, não para controlar o fluxo normal da aplicação.
-
----
-
-## 📌 Por que Entender Exceções é Importante?
-
-Um bom tratamento de exceções:
-
-* Evita falhas silenciosas.  
-* Melhora a experiência do usuário.  
-* Facilita manutenção.  
-* Torna o código mais confiável.  
-
-Saber **quando lançar**, **quando tratar** e **quando propagar** uma exceção é sinal de maturidade técnica.
+O programa executa as instruções **sequencialmente**, sem interrupções.
 
 ---
 
-## 🔗 Próximo Passo
+### 🔴 Fluxo com exceção: 
 
-Com o conceito claro, o próximo tema será:
+```text
+Início
+  ↓
+Instrução 1
+  ↓
+Instrução 2
+  ↓
+💥 Ocorre uma exceção
+  ↓
+Java interrompe o fluxo normal
+  ↓
+Procura um tratamento (try/catch)
+```
 
-👉 **Hierarquia de Exceções em Java**
+A partir desse ponto, dois cenários são possíveis:
 
-Entender quem herda de quem é essencial para tratar erros corretamente.
+```text
+✔ Exceção tratada → execução continua
+✖ Exceção não tratada → aplicação encerra
+```
+
+## 📊 Infográfico — Fluxo de execução em Java:  
+
+```text
+🟢 FLUXO NORMAL
+Início → Código → Código → Código → Fim
+
+🔴 FLUXO COM EXCEÇÃO
+Início → Código → 💥 Exceção
+                   ↓
+            try/catch existe?
+              ↓            ↓
+           Sim ✔        Não ✖
+              ↓            ↓
+       Execução segue   Aplicação encerra
+```
+
+📌 **Ponto-chave:**
+
+Quando uma exceção acontece, o Java **para imediatamente** a execução normal e muda para o **fluxo de tratamento de erro**.
 
 ---
 
-> Exceções não são inimigas do código — são aliadas da confiabilidade.
+## ❓ Por que exceções existem?
+
+Exceções existem para:
+
+* Evitar que a aplicação continue em um estado inconsistente.  
+* Tornar falhas explícitas e rastreáveis.  
+* Permitir tratamento controlado de erros.  
+* Separar lógica de negócio de lógica de erro.  
+
+Sem exceções, o código ficaria repleto de verificações confusas, difíceis de ler e manter.
+
+---
+
+## ⚠️ Erro comum de iniciantes.  
+
+### ❌ Usar exceções como controle de fluxo:  
+
+Um erro muito comum é usar exceções para situações previsíveis:
+
+```java
+try {
+    int resultado = 10 / 0;
+} catch (Exception e) {
+    System.out.println("Erro");
+}
+```
+
+🚫 Problemas dessa abordagem:
+
+* Usa exceção para algo previsível.  
+* Captura `Exception` de forma genérica.  
+* Esconde a causa real do problema.  
+
+---
+
+### ✅ Abordagem correta:  
+
+Situações previsíveis devem ser tratadas com **validações**, não com exceções.
+
+```java
+if (divisor == 0) {
+    System.out.println("Divisão inválida");
+} else {
+    int resultado = 10 / divisor;
+}
+```
+
+📌 **Regra prática:**
+
+> Se você consegue prever o problema, provavelmente **não é caso de exceção**.
+
+---
+
+## 📌 O que você deve levar deste conteúdo
+
+Ao finalizar este arquivo, você deve compreender que:
+
+* Exceções interrompem o fluxo normal do programa.  
+* Elas ocorrem em tempo de execução.  
+* O Java exige que exceções sejam tratadas ou propagadas.  
+* Um código profissional **não abusa de exceções**.  
+
+No próximo conteúdo, avançaremos para a **hierarquia de exceções em Java**, entendendo como o Java organiza erros e exceções através de classes.
+
+---
+
+
