@@ -1,184 +1,89 @@
-# 05 — Programação Funcional em Java.  
+# Stream API na Prática.  
 
-## 🎯 Objetivo do Módulo:  
+## 🎯 Objetivo:  
 
-Este módulo introduz os **fundamentos de Programação Funcional em Java**, preparando o terreno para o uso consciente de **Lambdas** e, posteriormente, da **Stream API**.
+Este material tem como objetivo **aplicar a Stream API em Java de forma prática, consciente e legível**, utilizando coleções reais e exemplos progressivos.
 
-Aqui o foco **não é Stream ainda**, mas sim a mudança de mentalidade:
+Aqui, a Stream API deixa de ser apenas conceito e passa a ser **ferramenta de trabalho no dia a dia**.
 
-> pensar mais em **o que fazer com os dados** do que **como percorrê-los**.
+Ao final, a pessoa estudante deverá ser capaz de:
 
-Ao final deste módulo, a pessoa estudante deverá:
-
-* Entender o que é Programação Funcional e por que ela existe.  
-* Compreender o conceito de **funções como valores**.  
-* Conhecer o papel das **interfaces funcionais** em Java.  
-* Ler e escrever **expressões lambda simples**.  
-* Estar preparada para avançar para Stream API com menos abstração.  
+- Criar Streams a partir de coleções
+- Utilizar operações intermediárias (`filter`, `map`, `sorted`, `distinct`)
+- Aplicar operações terminais (`forEach`, `collect`, `count`, `findFirst`)
+- Ler pipelines de Stream com clareza
+- Avaliar quando usar Stream e quando **não usar**
 
 ---
 
-## 🧠 O que é Programação Funcional?
+## 🧠 Pré-requisitos:  
 
-Programação Funcional é um **paradigma de programação** que trata o comportamento do programa como a aplicação de **funções** sobre dados.
+Antes de estudar este conteúdo, é esperado que a pessoa estudante compreenda:
 
-Em vez de focar em:
+- Coleções (`List`, `Set`, `Map`)
+- Expressões Lambda
+- Conceitos fundamentais da Stream API
 
-* laços explícitos (`for`, `while`)
-* controle manual de estado
-
-passamos a focar em:
-
-* **transformações de dados**
-* **operações declarativas**
-* **comportamento passado como argumento**
+Esses temas foram trabalhados anteriormente no módulo **05 — Programação Funcional**.
 
 ---
 
-## ⚖️ Imperativo x Funcional (Intuição Inicial).  
+## 🧩 Como Pensar Streams na Prática:  
 
-### Estilo Imperativo (tradicional):  
+Uma Stream deve ser lida como uma **frase**, da esquerda para a direita:
 
-* Diz *como* o computador deve executar cada passo.  
-* Muito comum com `for`, `if`, variáveis mutáveis.  
+> "A partir destes dados, filtre isso, transforme aquilo e produza um resultado."
 
-### Estilo Funcional:  
-
-* Diz *o que* deve ser feito com os dados.  
-* Menos controle explícito de fluxo.  
-* Código mais expressivo e legível.  
-
-> Em Java, os dois estilos **coexistem**.
+Se a leitura não for clara, o código provavelmente pode (e deve) ser melhorado.
 
 ---
 
-## 🧩 Funções como Cidadãs de Primeira Classe (em Java).  
+## 🔁 Operações Mais Utilizadas.  
 
-Java não nasceu funcional, mas **a partir do Java 8** passou a permitir:
+### Operações Intermediárias (transformação):  
 
-* Passar comportamento como parâmetro.  
-* Atribuir funções a variáveis.  
-* Executar lógica sem criar classes anônimas verbosas.  
+- `filter` → seleciona elementos
+- `map` → transforma elementos
+- `sorted` → ordena
+- `distinct` → remove duplicados
 
-Isso é feito principalmente através de:
+### Operações Terminais (resultado):  
 
-* **Interfaces Funcionais**
-* **Expressões Lambda**
-
----
-
-## 🧪 Interfaces Funcionais.  
-
-Uma **interface funcional** é uma interface que possui **apenas um método abstrato**.
-
-Exemplos comuns da API Java:
-
-* `Predicate<T>` → retorna `boolean`.  
-* `Function<T, R>` → transforma um valor em outro.  
-* `Consumer<T>` → consome um valor sem retorno.  
-* `Supplier<T>` → fornece um valor.  
-
-Essas interfaces são a base para Lambdas e Streams.
+- `forEach` → executa uma ação
+- `collect` → converte para outra estrutura
+- `count` → conta elementos
+- `findFirst` → retorna o primeiro elemento
 
 ---
 
-## 🔑 Expressões Lambda (Visão Geral).  
-
-Uma expressão lambda representa **uma função anônima**, de forma curta e direta.
-
-Exemplo conceitual:
-
-```java
-(x) -> x * 2
-```
-
-Neste momento, o mais importante é entender que:
-
-* Lambdas **representam comportamento**.  
-* Lambdas dependem de **interfaces funcionais**.  
-* Elas tornam o código menos verboso e mais expressivo.  
-
-A prática detalhada será feita nos exemplos do módulo.
-
----
-
-## 📂 Organização do Módulo:  
+## 📂 Organização do Diretório:  
 
 ```text
 05-programacao-funcional/
-│
 ├── README.md
-├── Lambdas.java
-└── StreamAPI.md
-```
+├── lambdas/
+│   └── Lambdas.java
+└── streams/
+    ├── README.md
+    └── StreamAPI.md
+``` 
+Este diretório concentra exemplos práticos e leitura guiada do uso da Stream API.
 
-* `Lambdas.java` → primeiros exemplos práticos.  
-* `StreamAPI.md` → **conceitos teóricos** (Streams virão com calma).  
+### 📌 Boas Práticas:  
 
----
+Priorize legibilidade acima de tudo. 
+Evite pipelines muito longas. 
+Não force Stream onde um for simples é mais claro. 
+Streams são ferramentas, não regras. 
 
-## 🔗 Conexão com Coleções:  
+#### 🔗 Conexão com o Módulo: 
 
-Programação Funcional em Java **não faz sentido sem coleções**.
-
-É aqui que conceitos como:
-
-* filtrar
-* mapear
-* transformar
-
-começam a surgir de forma natural.
-
----
-
-📊 Infográfico — Onde a Programação Funcional se encaixa no Java:  
-```text
-        Java Tradicional
-  (Imperativo / OO Clássico)
-              │
-              ▼
-     ┌──────────────────┐
-     │  Coleções (List, │
-     │  Set, Map)       │
-     └──────────────────┘
-              │
-              ▼
-     ┌──────────────────┐
-     │ Programação      │
-     │ Funcional        │
-     │                  │
-     │ • Funções        │
-     │ • Lambdas        │
-     │ • Interfaces     │
-     │   Funcionais     │
-     └──────────────────┘
-              │
-              ▼
-     ┌──────────────────┐
-     │   Stream API     │
-     │                  │
-     │ • filter         │
-     │ • map            │
-     │ • reduce         │
-     └──────────────────┘
-```
-
-#### 🔎 Leitura do fluxo: 
+Este conteúdo consolida conceitos fundamentais:
 
 Coleções → dados. 
 
-Programação Funcional → comportamento aplicado aos dados. 
+Programação funcional → comportamento. 
 
-Stream API → pipeline declarativo de processamento. 
+Stream API → processamento declarativo. 
 
-## 📌 Observações Importantes:  
-
-* Não tente decorar sintaxe.  
-* Priorize entender a ideia de **passar comportamento**.  
-* Este módulo é conceitual + introdutório.  
-
-A prática consistente virá nos próximos passos.
-
----
-
-> Programação Funcional não substitui o Java tradicional — ela o complementa.
+> Stream API bem utilizada transforma código complexo em leitura simples.
