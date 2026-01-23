@@ -50,7 +50,7 @@ Usada quando a ordem importa.
 ### 🔢 Set:  
 
 * **Não permite elementos duplicados**.  
-* Não garante ordem (na maioria das implementações).  
+* Não garante ordem por padrão (algumas implementações mantêm ordem).  
 
 Exemplos comuns:
 
@@ -64,9 +64,9 @@ Usada quando unicidade é essencial.
 
 ### 🗺️ Map:  
 
-* Armazena dados em **pares chave → valor**
-* Chaves são únicas
-* Valores podem ser repetidos
+* Armazena dados em **pares chave → valor**.
+* Chaves são únicas.
+* Valores podem ser repetidos.
 
 Exemplos comuns:
 
@@ -75,6 +75,8 @@ Exemplos comuns:
 * `TreeMap`
 
 Usada para associações e buscas rápidas.
+
+* Apesar de fazer parte do Java Collections Framework, Map não estende Collection, pois seu modelo é baseado em pares chave → valor.
 
 ---
 
@@ -91,6 +93,8 @@ Os exemplos focam em:
 * Criação.  
 * Inserção de dados. 
 * Leitura e iteração.  
+
+*Cada arquivo contém um main executável e exemplos progressivos, pensados para leitura e experimentação.* 
 
 ---
 
