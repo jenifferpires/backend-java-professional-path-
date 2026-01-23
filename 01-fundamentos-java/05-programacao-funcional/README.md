@@ -131,6 +131,46 @@ começam a surgir de forma natural.
 
 ---
 
+📊 Infográfico — Onde a Programação Funcional se encaixa no Java:  
+```text
+        Java Tradicional
+  (Imperativo / OO Clássico)
+              │
+              ▼
+     ┌──────────────────┐
+     │  Coleções (List, │
+     │  Set, Map)       │
+     └──────────────────┘
+              │
+              ▼
+     ┌──────────────────┐
+     │ Programação      │
+     │ Funcional        │
+     │                  │
+     │ • Funções        │
+     │ • Lambdas        │
+     │ • Interfaces     │
+     │   Funcionais     │
+     └──────────────────┘
+              │
+              ▼
+     ┌──────────────────┐
+     │   Stream API     │
+     │                  │
+     │ • filter         │
+     │ • map            │
+     │ • reduce         │
+     └──────────────────┘
+```
+
+#### 🔎 Leitura do fluxo: 
+
+Coleções → dados. 
+
+Programação Funcional → comportamento aplicado aos dados. 
+
+Stream API → pipeline declarativo de processamento. 
+
 ## 📌 Observações Importantes:  
 
 * Não tente decorar sintaxe.  
